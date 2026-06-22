@@ -1,5 +1,5 @@
-import { JsonMerger } from './index.js'
+import { JsonMerger } from "./index.js";
 
-const ModelMerger = new JsonMerger<unknown>((a, b) => b)
+const ModelMerger = new JsonMerger<unknown>((a, b) => b);
 
-export default ModelMerger
+export default ModelMerger;
