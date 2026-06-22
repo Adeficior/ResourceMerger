@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.99</version>
-#    <timestamp>2026-06-22T08:49:39.287Z</timestamp>
-#    <hash>8bce2b7b4c9aba76</hash>
+#    <version>1.0.100</version>
+#    <timestamp>2026-06-22T09:00:07.261Z</timestamp>
+#    <hash>549a03ac9f117d50</hash>
 # </meta>
 
 name: Trigger Prerelease
@@ -28,7 +28,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: benc-uk/workflow-dispatch@v1
-        if: toJson(steps.action.outputs.matched)
+        if: ${{ toJson(steps.action.outputs.matched) }}
         with:
           workflow: release.yml
           inputs: '{ "rc": true, "version": "${{ steps.action.outputs.tag }}-rc.${{ github.run_number }}" }'
