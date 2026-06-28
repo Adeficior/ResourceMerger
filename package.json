@@ -19,7 +19,8 @@
       "format": "prettier --write {src,test}",
       "cli": "node dist/cli",
       "test": "bun test",
-      "test:ci": "bun run lint && bun run test --coverage"
+      "test:ci": "bun run lint && bun run test --coverage",
+      "prepare": "husky"
    },
    "repository": {
       "type": "git",
@@ -36,6 +37,7 @@
       "@types/command-line-usage": "^5.0.4",
       "@types/minimatch": "^3.0.5",
       "eslint": "^10.5.0",
+      "husky": "^9.1.7",
       "prettier": "^3.8.4",
       "typescript": "^6.0.3",
       "typescript-eslint": "^8.61.0"
