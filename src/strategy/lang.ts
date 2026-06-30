@@ -1,4 +1,4 @@
-import { JsonMerger } from "./index.js";
+import { JsonMerger } from "./json.js";
 
 export type LangDefinition = Record<string, string>;
 

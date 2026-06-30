@@ -1,0 +1,20 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`merging strategies merges tags correctly: orbs.json 1`] = `
+{
+  "values": [
+    "example:circle",
+    "example:oval",
+    "example:sphere",
+  ],
+}
+`;
+
+exports[`merging strategies replaces tags correctly: replaced orbs.json 1`] = `
+{
+  "replace": true,
+  "values": [
+    "example:sphere",
+  ],
+}
+`;

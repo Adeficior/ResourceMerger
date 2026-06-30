@@ -1,12 +1,11 @@
 import {
   silentLogger,
-  type Options as ResolverOptions,
+  type CombinedResolverOptions,
 } from "@adeficior/pack-resolver";
 import arg from "arg";
 import type { Section } from "command-line-usage";
 import commandLineUsage from "command-line-usage";
 import { existsSync, readFileSync } from "fs";
-import type Options from "../options.js";
 
 const sections: Section[] = [
   {
@@ -83,8 +82,8 @@ const sections: Section[] = [
   },
 ];
 
-export interface CliOptions extends Options, Omit<ResolverOptions, "from"> {
-  from: string;
+export interface CliOptions extends CombinedResolverOptions {
+  output: string;
 }
 
 export function readConfig(configFile?: string) {
@@ -104,8 +103,6 @@ export default function getOptions(configFile?: string): CliOptions {
     "--from": String,
     "--output": String,
     "--pack-format": Number,
-    "--overwrite": Boolean,
-    "--keep": Boolean,
     "--silent": Boolean,
     "-c": "--config",
     "--help": Boolean,
@@ -128,11 +125,7 @@ export default function getOptions(configFile?: string): CliOptions {
     from: args["--from"] ?? config?.from ?? "resources",
     include: args["--include"] ?? config?.include,
     exclude: args["--exclude"] ?? config?.include,
-    title: "Merged",
-    overwrite: args["--overwrite"],
-    keep: args["--keep"],
     logger,
-    packFormat: args["--pack-format"] ?? config?.packFormat,
     output,
   };
 }

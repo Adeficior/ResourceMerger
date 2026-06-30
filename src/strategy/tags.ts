@@ -1,5 +1,5 @@
-import { uniq } from "../util.js";
-import { JsonMerger } from "./index.js";
+import { uniq } from "@adeficior/pack-resolver";
+import { JsonMerger } from "./json.js";
 
 export interface TagDefinition {
   replace?: boolean;

@@ -1,4 +1,4 @@
-import { ArchiveResolver } from "@adeficior/pack-resolver";
+import { createResolver } from "@adeficior/pack-resolver";
 import chalk from "chalk";
 import { existsSync } from "fs";
 import { styleText } from "util";
@@ -12,26 +12,30 @@ async function compare(reference: string, generated: string) {
   const pathToHash = new Map<string, string>();
   const hashToPath = new Map<string, string>();
 
-  await new ArchiveResolver(reference, {}).extract((path, content) => {
-    const hash = fileHash(content);
-    pathToHash.set(path, hash);
-    hashToPath.set(hash, path);
+  await createResolver({ from: reference }).extract({
+    accept: async (path, content) => {
+      const hash = fileHash(await content);
+      pathToHash.set(path, hash);
+      hashToPath.set(hash, path);
+    },
   });
 
-  await new ArchiveResolver(generated, {}).extract((path, content) => {
-    const hash = fileHash(content);
-    if (pathToHash.has(path)) {
-      if (hash !== pathToHash.get(path)) {
-        console.info(styleText("yellow", `~ '${path}'`));
+  await createResolver({ from: generated }).extract({
+    accept: async (path, content) => {
+      const hash = fileHash(await content);
+      if (pathToHash.has(path)) {
+        if (hash !== pathToHash.get(path)) {
+          console.info(styleText("yellow", `~ '${path}'`));
+        }
+        pathToHash.delete(path);
+      } else {
+        const oldPath = hashToPath.get(hash);
+        if (oldPath) {
+          console.info(styleText("blue", `~ ${oldPath} -> ${path}`));
+          pathToHash.delete(oldPath);
+        } else console.info(styleText("green", `+ '${path}'`));
       }
-      pathToHash.delete(path);
-    } else {
-      const oldPath = hashToPath.get(hash);
-      if (oldPath) {
-        console.info(styleText("blue", `~ ${oldPath} -> ${path}`));
-        pathToHash.delete(oldPath);
-      } else console.info(styleText("green", `+ '${path}'`));
-    }
+    },
   });
 
   for (const missing of pathToHash.keys()) {
