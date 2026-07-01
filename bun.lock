@@ -5,7 +5,7 @@
     "": {
       "name": "@adeficior/resource-merger",
       "dependencies": {
-        "@adeficior/pack-resolver": "^2.0.0-rc.41",
+        "@adeficior/pack-resolver": "^2.0.0-rc.42",
         "arg": "^5.0.2",
         "command-line-usage": "^6.1.3",
       },
@@ -22,7 +22,7 @@
     },
   },
   "packages": {
-    "@adeficior/pack-resolver": ["@adeficior/pack-resolver@2.0.0-rc.41", "", { "dependencies": { "minimatch": "^10.2.5", "node-stream-zip": "^1.15.0", "zip-a-folder": "^6.1.1" } }, "sha512-zLbE30u5McGR1QYpwK2cQTkvVTnRtmjqwQjmReEhaIG97BsnoPYO/quEQZr5iDUvEtT82N8WqCqo4+AaP9d33g=="],
+    "@adeficior/pack-resolver": ["@adeficior/pack-resolver@2.0.0-rc.42", "", { "dependencies": { "minimatch": "^10.2.5", "node-stream-zip": "^1.15.0", "zip-a-folder": "^6.1.1" } }, "sha512-Po6XF40yDv+/BMisq9yReZR8SAUJl4dzEwEDCXbxUbp3dEq4z2vVN5a3441EfVEso2j4IaPjCOTpxpWcGTduUg=="],
 
     "@eslint-community/eslint-utils": ["@eslint-community/eslint-utils@4.9.1", "", { "dependencies": { "eslint-visitor-keys": "^3.4.3" }, "peerDependencies": { "eslint": "^6.0.0 || ^7.0.0 || >=8.0.0" } }, "sha512-phrYmNiYppR7znFEdqgfWHXR6NCkZEK7hwWDHZUjit/2/U0r6XvkDl0SYnoM51Hq7FhCGdLDT6zxCCOY1hexsQ=="],
 
