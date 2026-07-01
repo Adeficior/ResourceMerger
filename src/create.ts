@@ -40,11 +40,17 @@ export function mergingAcceptor(
 
 export function createMergingAcceptor(acceptor: Acceptor): Acceptor {
   const withoutFinalize: Acceptor = { accept: acceptor.accept };
-  const merging = distributedAcceptor({
-    "assets/*/models/**/*.json": mergingAcceptor(withoutFinalize, ModelMerger),
-    "assets/*/lang/**/*.json": mergingAcceptor(withoutFinalize, LangMerger),
-    "data/*/tags/**/*.json": mergingAcceptor(withoutFinalize, TagMerger),
-  });
+  const merging = distributedAcceptor(
+    {
+      "assets/*/models/**/*.json": mergingAcceptor(
+        withoutFinalize,
+        ModelMerger,
+      ),
+      "assets/*/lang/**/*.json": mergingAcceptor(withoutFinalize, LangMerger),
+      "data/*/tags/**/*.json": mergingAcceptor(withoutFinalize, TagMerger),
+    },
+    withoutFinalize,
+  );
 
   if (acceptor.finalize) return afterFinalize(merging, acceptor.finalize);
   return merging;
